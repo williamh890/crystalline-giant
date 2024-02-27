@@ -8,7 +8,7 @@
       margin: auto;
     " class="text-hidder">
 
-    <div (click)="addKeyword()" class="card-text">
+    <div class="card-text">
       <div *ngFor="let keyword of filteredKeywords(); last as isLast">
         <div *ngIf="keyword.count > 0" style="font-weight: 500;">
           {{ keyword.name }}<span *ngIf="keyword.count > 1"> ({{ keyword.count }})</span><span *ngIf="!isLast">,&#8200;</span>
