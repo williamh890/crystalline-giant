@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.small-icon-button {
+  width: 30px !important;
+  height: 30px !important;
+  padding: 0px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  & > *[role=img] {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .mat-mdc-button-touch-target {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+.mat-list-item-content {
+  justify-content: space-between;
+}

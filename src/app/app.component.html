@@ -1,0 +1,92 @@
+<div *ngIf="!isEditing" class="imgbox">
+  <img #cardImage class="center-fit" src="assets/crystalline-giant.jpg" />
+  <div
+    style="
+      top: {{ - imageHeight * .365 }}px;
+      width: {{ imageWidth * .83}}px;
+      height: {{ imageHeight * .24}}px;
+      margin: auto;
+    " class="text-hidder">
+
+    <div (click)="addKeyword()" class="card-text">
+      <div *ngFor="let keyword of filteredKeywords(); last as isLast">
+        <div *ngIf="keyword.count > 0" style="font-weight: 500;">
+          {{ keyword.name }}<span *ngIf="keyword.count > 1"> ({{ keyword.count }})</span><span *ngIf="!isLast">,&#8200;</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="
+      top: {{ - imageHeight * .37 }}px;
+      right: {{ imageWidth * .09 }}px;
+      width: {{ imageWidth * .65}}px;
+      height: {{ imageHeight * .0380  }}px;
+      margin: auto;
+    " class="text-hidder"></div>
+
+  <div style="
+    position: relative;
+    top: {{ - imageHeight * .805 }}px;
+    left: {{ imageWidth * .02 }}px;
+    width: {{ imageWidth * .83}}px;
+    height: {{  imageHeight * .0380  }}px;
+    margin: auto;
+    ">
+    <div class="card-buttons">
+      <button (click)="addKeyword()" color="primary" class="small-icon-button m4" mat-mini-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+      <button (click)="proliforate()" color="primary" class="small-icon-button m4" mat-mini-fab>
+        <mat-icon>cached</mat-icon>
+      </button>
+      <button (click)="setEditMode(true)" color="primary" class="small-icon-button m4" mat-mini-fab>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button (click)="resetKeywords()" color="primary" class="small-icon-button m4" mat-mini-fab>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isEditing" class="edit-list-container">
+  <button (click)="setEditMode(false)" color="primary" class="small-icon-button m4" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-list>
+    <mat-list-item class="edit-counter-item" *ngFor="let keyword of filteredKeywords()">
+      <div style="margin-right: 10px;">
+
+        {{ keyword.name }}
+      </div>
+
+      <div>
+        <button (click)="addCounter(keyword.name)" color="primary" class="small-icon-button m4" mat-mini-fab>
+          <mat-icon>
+            add
+          </mat-icon>
+        </button>
+            {{keyword.count}}
+        <button (click)="removeCounter(keyword.name)" color="primary" class="small-icon-button m4" mat-mini-fab>
+          <mat-icon>
+            remove
+          </mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+
+    <mat-list-item style="margin-top:6px;">
+      <mat-form-field class="example-full-width">
+        <mat-label>Add Custom Counter</mat-label>
+        <input matInput placeholder="Ex. Indestructible" [(ngModel)]="customCounter">
+      </mat-form-field>
+
+      <div>
+        <button (click)="onAddCustomCounter()" mat-raised-button>add</button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
