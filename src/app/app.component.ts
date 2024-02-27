@@ -112,10 +112,20 @@ export class AppComponent implements AfterViewInit {
   }
 
   onAddCustomCounter() {
-    this.customKeywords.push({
-      name: this.customCounter,
-      count: 1,
-    });
+    if (this.customCounter === '') {
+      return;
+    }
+
+    const kwSet = new Set(KEYWORDS);
+
+    if (kwSet.has(this.customCounter.toLowerCase())) {
+      this.addCounter(this.customCounter.toLowerCase());
+    } else {
+      this.customKeywords.push({
+        name: this.customCounter,
+        count: 1,
+      });
+    }
     this.customCounter = '';
   }
 
@@ -144,7 +154,7 @@ export class AppComponent implements AfterViewInit {
       }
 
       return kw
-    })
+    });
 
     this.customKeywords = this.customKeywords.map(kw => {
       if (kw.name === name) {
@@ -152,7 +162,7 @@ export class AppComponent implements AfterViewInit {
       }
 
       return kw
-    })
+    });
   }
 
   customCounter = '';
