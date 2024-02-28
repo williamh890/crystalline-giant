@@ -1,5 +1,5 @@
 <div *ngIf="!isEditing" class="imgbox">
-  <img #cardImage class="center-fit" src="assets/crystalline-giant.jpg" />
+  <img #cardImage (load)="onResize()" class="center-fit" src="assets/crystalline-giant.jpg" />
   <div
     style="
       top: {{ - imageHeight * .365 }}px;

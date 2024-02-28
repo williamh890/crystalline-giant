@@ -66,6 +66,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
+    console.log('resizing', this.cardImage);
     if(!this.cardImage) {
       return;
     }

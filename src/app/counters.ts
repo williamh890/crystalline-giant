@@ -1,4 +1,17 @@
 export const COUNTERS = [
+  'Deathtouch',
+  'Double strike',
+  'First strike',
+  'Flying',
+  'Haste',
+  'Hexproof',
+  'Indestructible',
+  'Lifelink',
+  'Menace',
+  'Reach',
+  'Shadow',
+  'Trample',
+  'Vigilance',
   '+1/+1',
   '-1/-1',
   '+0/+1',
@@ -101,7 +114,6 @@ export const COUNTERS = [
   'Impostor',
   'Incarnation',
   'Incubation',
-  'Indestructible',
   'Infection',
   'Influence',
   'Ingenuity',
@@ -211,5 +223,5 @@ export const COUNTERS = [
   'Wage',
   'Winch',
   'Wind',
-  'Wish'
+  'Wish',
 ];
