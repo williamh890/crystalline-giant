@@ -79,10 +79,20 @@
     </mat-list-item>
 
     <mat-list-item style="margin-top:6px;">
-      <mat-form-field class="example-full-width">
-        <mat-label>Add Custom Counter</mat-label>
-        <input matInput placeholder="Ex. Indestructible" [(ngModel)]="customCounter">
-      </mat-form-field>
+      <form>
+        <mat-form-field class="example-full-width">
+          <mat-label>Add Custom Counter</mat-label>
+          <input matInput placeholder="Ex. Indestructible"
+            type="text"
+            [(ngModel)]="customCounter"
+            [formControl]="customCounterControl"
+            [matAutocomplete]="auto"
+          >
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let counter of filterCounters | async" [value]="counter">{{counter}}</mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
 
       <div>
         <button (click)="onAddCustomCounter()" mat-raised-button>add</button>

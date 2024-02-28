@@ -7,8 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 
@@ -25,6 +26,8 @@ import { AppComponent } from './app.component';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
   ],
   providers: [
     provideAnimations(),

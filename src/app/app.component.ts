@@ -1,5 +1,10 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, HostListener, ViewEncapsulation } from '@angular/core';
-import { timer } from 'rxjs';
+import { Component, AfterViewInit, ElementRef, ViewChild, HostListener, ViewEncapsulation, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { Observable, timer } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+import { COUNTERS } from './counters';
 
 const KEYWORDS: string[] = [
   'flying',
@@ -25,13 +30,17 @@ interface Counter {
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   keywords: Counter[] = KEYWORDS.map(
     keyword => ({
       name: keyword,
       count: 0
     })
   );
+
+  counters = COUNTERS;
+  filterCounters: Observable<string[]>;
+  customCounterControl = new FormControl();
 
   customKeywords: Counter[] = []
 
@@ -41,6 +50,19 @@ export class AppComponent implements AfterViewInit {
   isEditing = false;
 
   @ViewChild('cardImage') cardImage!: ElementRef;
+
+  ngOnInit(): void {
+    this.filterCounters = this.customCounterControl.valueChanges.pipe(
+      startWith(''),
+      map(v => this._filter(v || ''))
+    )
+  }
+
+  _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.counters.filter(option => option.toLowerCase().includes(filterValue));
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
