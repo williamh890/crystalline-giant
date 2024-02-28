@@ -145,7 +145,7 @@ export class AppComponent implements AfterViewInit, OnInit {
       this.addCounter(this.customCounter.toLowerCase());
     } else {
       this.customKeywords.push({
-        name: this.customCounter,
+        name: this.customCounter.toLowerCase(),
         count: 1,
       });
     }
